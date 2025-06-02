@@ -49,8 +49,14 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'docker-compose down || true'
-        sh 'docker-compose up -d'
+        sh 'docker-compose up -d --build'
       }
+    }
+
+    stage('Monitoring') {
+      steps {
+                sh 'curl -X POST -H "Content-Type: application/json" -d '{"text": "App deployed in PROD"}' http://localhost:3000/health'
+        }
     }
 
     // Release and Monitoring stages are intentionally omitted
