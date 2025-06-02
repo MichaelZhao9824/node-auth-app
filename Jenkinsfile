@@ -31,17 +31,17 @@ pipeline {
         }
     }
 
-    stage('Security') {
-      steps {
-        sh '''
-          echo "Running npm audit..."
-          npm audit --audit-level=low || true
+   stage('Security') {
+    steps {
+      sh '''
+        mkdir -p bin
+        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b ./bin
 
-          echo "Installing Trivy..."
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+        echo "Running npm audit..."
+        npm audit --audit-level=low || true
 
-          echo "Running Trivy on source code..."
-          trivy fs . || true
+        echo "Running Trivy on source code..."
+        ./bin/trivy fs . || true
         '''
       }
     }
