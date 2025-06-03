@@ -48,9 +48,10 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'docker stop node-auth-app || true '
-        sh 'docker rm node-auth-app || true '
-        sh 'docker run -d -p 3000:3000 --name node-auth-app ${DOCKER_IMAGE}'
+        //sh 'docker stop node-auth-app || true '
+        //sh 'docker rm node-auth-app || true '
+        //sh 'docker run -d -p 3000:3000 --name node-auth-app ${DOCKER_IMAGE}'
+        sh 'node app.js &'
       }
     }
 
