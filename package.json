@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "mocha --recursive",
+    "test": "mocha --exit",
     "lint": "eslint ."
   },
-  "author": "Your Name",
+  "author": "EricHUanghzy",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
