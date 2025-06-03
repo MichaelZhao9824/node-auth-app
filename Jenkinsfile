@@ -56,7 +56,7 @@ pipeline {
 
     stage('Monitoring') {
       steps {
-                sh '''curl -X POST -H "Content-Type: application/json" -d '{"text": "App deployed in PROD"}' http://localhost:3000/health'''
+                sh '''curl http://localhost:3000/health'''
         }
     }
 
