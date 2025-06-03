@@ -50,7 +50,7 @@ pipeline {
       steps {
         sh 'docker stop node-auth-app || true '
         sh 'docker rm node-auth-app || true '
-        sh 'docker run -p 3000:3000 --name node-auth-app ${DOCKER_IMAGE}'
+        sh 'docker run -d -p 3000:3000 --name node-auth-app ${DOCKER_IMAGE}'
       }
     }
 
@@ -59,8 +59,6 @@ pipeline {
         sh '''curl http://localhost:3000/health'''
         }
     }
-
-    // Release and Monitoring stages are intentionally omitted
   }
 
   post {
