@@ -57,6 +57,7 @@ pipeline {
 
     stage('Monitoring') {
       steps {
+        sh 'sleep 15'
         sh '''curl http://localhost:3000/health'''
         }
     }
